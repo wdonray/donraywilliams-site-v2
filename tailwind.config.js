@@ -7,7 +7,7 @@ module.exports = {
         'flower-background': "url('/flower.png')",
       },
       fontFamily: {
-        sans: ['Josefin Sans'],
+        body: ['EBGaramond'],
       },
     },
     colors: {
