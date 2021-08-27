@@ -35,7 +35,7 @@ a {
   justify-content: space-between;
   width: 100%;
   transform: translateY(0);
-  transition: transform 0.3s ease;
+  transition: transform 0.8s ease;
 }
 
 .header.hidden {

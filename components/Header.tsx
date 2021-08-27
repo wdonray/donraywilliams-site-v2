@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { map } from 'lodash'
+import React, { useState } from 'react'
+import { map, lowerCase } from 'lodash'
+
 import Image from 'next/image'
-import { lowerCase } from 'lodash'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+
 import useDocumentScrollThrottled from '../utils/ScrollThrottle'
 
 type HeaderProps = {
@@ -14,30 +15,26 @@ type HeaderProps = {
 
 export default function Header({ name, sections, portrait }: HeaderProps) {
   const [shouldHideHeader, setShouldHideHeader] = useState(false)
-  const router = useRouter()
-  const MINIMUM_SCROLL = 80
-  const TIMEOUT_DELAY = 400
 
-  useDocumentScrollThrottled((callbackData) => {
+  useDocumentScrollThrottled((callbackData: any) => {
     const { previousScrollTop, currentScrollTop } = callbackData
     const isScrolledDown = previousScrollTop < currentScrollTop
-    const isMinimumScrolled = currentScrollTop > MINIMUM_SCROLL
+    const isMinimumScrolled = currentScrollTop > 30
 
     setTimeout(() => {
       setShouldHideHeader(isScrolledDown && isMinimumScrolled)
-    }, TIMEOUT_DELAY)
+    }, 30)
   })
-
-  const shallowRouteChange = (section: string, event: React.MouseEvent<HTMLElement>) => {
-    event.preventDefault()
-    router.replace(`#${lowerCase(section)}`, undefined, { shallow: true, scroll: false })
-  }
 
   const sectionsList = map(sections, (section: string) => (
     <li key={section}>
-      <a className="cursor-pointer" onClick={(event) => shallowRouteChange(section, event)}>
-        {section}
-      </a>
+      <Link
+        href={{ pathname: '/', query: { section: `${lowerCase(section)}` } }}
+        shallow={true}
+        scroll={false}
+      >
+        <a> {section}</a>
+      </Link>
     </li>
   ))
 
