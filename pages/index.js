@@ -19,7 +19,7 @@ export default function Home() {
       {/* Content */}
       <Default>
         {components.map((x) => (
-          <section key={x.id} id={lowerCase(x.id)}>
+          <section key={x.id} id={`section-${lowerCase(x.id)}`}>
             <x.component />
           </section>
         ))}

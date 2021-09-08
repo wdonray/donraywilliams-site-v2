@@ -13,6 +13,9 @@ type HeaderProps = {
   portrait: any
 }
 
+//TODO: When scrolling up hide header
+//TODO: Fix "blinking"
+
 export default function Header({ name, sections, portrait }: HeaderProps) {
   const [shouldHideHeader, setShouldHideHeader] = useState(false)
 
@@ -28,12 +31,8 @@ export default function Header({ name, sections, portrait }: HeaderProps) {
 
   const sectionsList = map(sections, (section: string) => (
     <li key={section}>
-      <Link
-        href={{ pathname: '/', query: { section: `${lowerCase(section)}` } }}
-        shallow={true}
-        scroll={false}
-      >
-        <a> {section}</a>
+      <Link href={'/[slug]'} as={`/#${lowerCase(section)}`} shallow={true} scroll={false} replace>
+        <a>{section}</a>
       </Link>
     </li>
   ))

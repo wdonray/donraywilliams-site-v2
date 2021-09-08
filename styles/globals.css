@@ -45,3 +45,7 @@ a {
 .default-container {
   padding-top: 135px;
 }
+
+html {
+  scroll-behavior: smooth;
+}

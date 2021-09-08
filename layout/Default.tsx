@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from 'react'
-import { includes, replace } from 'lodash'
+import { includes, replace, some } from 'lodash'
 import { withRouter } from 'next/router'
 
 function Default({ children, router }) {
   useEffect(() => {
-    if (includes(router.asPath, '/?section=')) {
-      const id = replace(router.asPath, '/?section=', '')
-      const el = document.getElementById(id)
-      if (el) {
-        setTimeout(() => {
-          el.scrollIntoView({ behavior: 'smooth' })
+    const handleHashChange = (url) => {
+      if (includes(url, '#')) {
+        const id = replace(url, '/#', 'section-')
+        const el = document.getElementById(id)
+        if (el) {
+          window.scroll({ top: el.offsetTop - 50, behavior: 'smooth' })
           el.focus()
-        }, 30)
+        }
       }
+    }
+
+    router.events.on('hashChangeComplete', handleHashChange)
+
+    return () => {
+      router.events.off('hashChangeComplete', handleHashChange)
     }
   }, [router])
 
