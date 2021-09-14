@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import { map, lowerCase } from 'lodash'
-
+import React, { useState, useEffect } from 'react'
+import { map, lowerCase, throttle } from 'lodash'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -13,7 +12,6 @@ type HeaderProps = {
   portrait: any
 }
 
-//TODO: When scrolling up hide header
 //TODO: Fix "blinking"
 
 export default function Header({ name, sections, portrait }: HeaderProps) {
@@ -23,7 +21,6 @@ export default function Header({ name, sections, portrait }: HeaderProps) {
     const { previousScrollTop, currentScrollTop } = callbackData
     const isScrolledDown = previousScrollTop < currentScrollTop
     const isMinimumScrolled = currentScrollTop > 30
-
     setTimeout(() => {
       setShouldHideHeader(isScrolledDown && isMinimumScrolled)
     }, 30)
@@ -39,7 +36,7 @@ export default function Header({ name, sections, portrait }: HeaderProps) {
 
   return (
     <header className={`header ${shouldHideHeader ? 'hidden' : ''}`}>
-      <div className="bg-flower-background h-24 w-full"> </div>
+      <div className="bg-flower-background bg-center bg-cover h-24 w-full"> </div>
       <nav className="shadow-md h-16 bg-gray w-full">
         <div className="container h-full mx-auto flex flex-row justify-around items-center">
           <div className="flex flex-row gap-x-6 items-center">

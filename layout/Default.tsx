@@ -1,24 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import { includes, replace, some } from 'lodash'
+import React, { useEffect } from 'react'
 import { withRouter } from 'next/router'
+import { scrollToSection } from '../utils/ScrollToSection'
 
 function Default({ children, router }) {
   useEffect(() => {
-    const handleHashChange = (url) => {
-      if (includes(url, '#')) {
-        const id = replace(url, '/#', 'section-')
-        const el = document.getElementById(id)
-        if (el) {
-          window.scroll({ top: el.offsetTop - 50, behavior: 'smooth' })
-          el.focus()
-        }
-      }
-    }
-
-    router.events.on('hashChangeComplete', handleHashChange)
+    router.events.on('hashChangeComplete', scrollToSection)
 
     return () => {
-      router.events.off('hashChangeComplete', handleHashChange)
+      router.events.off('hashChangeComplete', scrollToSection)
     }
   }, [router])
 
@@ -26,3 +15,5 @@ function Default({ children, router }) {
 }
 
 export default withRouter(Default)
+
+
