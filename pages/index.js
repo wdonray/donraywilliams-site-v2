@@ -3,20 +3,12 @@ import Default from '../layout/Default.tsx'
 import portrait from '../public/portrait.jpeg'
 import dynamic from 'next/dynamic'
 import { map, lowerCase } from 'lodash'
-import AppSyncConfig from '../api/aws-exports'
-import { ApolloProvider, ApolloClient } from '@apollo/client'
-
+import { ApolloProvider } from '@apollo/client'
+import { GetClient } from '../utils/ApolloClient'
 export default function Home() {
-  const sections = ['About', 'Skills', 'Experience', 'Projects', 'Contact']
+  const client = GetClient()
 
-  const client = new ApolloClient({
-    url: AppSyncConfig.aws_appsync_graphqlEndpoint,
-    region: AppSyncConfig.aws_project_region,
-    auth: {
-      type: AppSyncConfig.aws_appsync_authenticationType,
-      apiKey: AppSyncConfig.aws_appsync_apiKey,
-    },
-  })
+  const sections = ['About', 'Skills', 'Experience', 'Projects', 'Contact']
 
   const components = map(sections, (x) => ({
     component: dynamic(() => import(`../components/sections/${x}`)),

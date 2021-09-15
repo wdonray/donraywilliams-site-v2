@@ -12,8 +12,11 @@
     "@apollo/client": "^3.4.11",
     "@heroicons/react": "^1.0.2",
     "@types/lodash": "^4.14.170",
+    "aws-appsync": "^4.1.1",
+    "aws-appsync-react": "^4.0.7",
     "dayjs": "^1.10.5",
     "graphql": "^15.5.3",
+    "graphql-tag": "^2.12.5",
     "lodash": "^4.17.21",
     "next": "11.0.0",
     "react": "17.0.2",
@@ -32,5 +35,8 @@
     "prettier": "^2.3.1",
     "tailwindcss": "^2.2.2",
     "typescript": "^4.3.4"
+  },
+  "resolutions": {
+    "apollo-client": "2.6.3"
   }
 }
