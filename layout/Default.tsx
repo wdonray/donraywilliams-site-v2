@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react'
 import { withRouter } from 'next/router'
 import { scrollToSection } from '../utils/ScrollToSection'
+import { listSections } from '../api/queries'
+import { useQuery } from '@apollo/client'
 
 function Default({ children, router }) {
+  const { loading, error, data } = useQuery(listSections)
+  console.log(data)
   useEffect(() => {
     router.events.on('hashChangeComplete', scrollToSection)
 
@@ -15,5 +19,3 @@ function Default({ children, router }) {
 }
 
 export default withRouter(Default)
-
-

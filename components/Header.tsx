@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { map, lowerCase, throttle } from 'lodash'
+import React, { useState } from 'react'
+import { map, lowerCase } from 'lodash'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
-
 import useDocumentScrollThrottled from '../utils/ScrollThrottle'
 
 type HeaderProps = {

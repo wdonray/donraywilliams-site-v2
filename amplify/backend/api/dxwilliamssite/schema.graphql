@@ -1,0 +1,5 @@
+type Section @model {
+  id: ID!
+  name: String!
+  content: String
+}

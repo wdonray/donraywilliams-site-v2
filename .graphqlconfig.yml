@@ -1,0 +1,12 @@
+projects:
+  dxwilliamssite:
+    schemaPath: api/graphql/schema.json
+    includes:
+      - backend
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: api/API.ts
+        docsFilePath: .
