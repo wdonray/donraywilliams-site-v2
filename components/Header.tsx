@@ -3,17 +3,17 @@ import { map, lowerCase } from 'lodash'
 import Image from 'next/image'
 import Link from 'next/link'
 import useDocumentScrollThrottled from '../utils/ScrollThrottle'
-
-type HeaderProps = {
-  name: string
-  sections: string[]
-  portrait: any
-}
+import { listSections } from '../api/queries'
+import { useQuery } from '@apollo/client'
+import portrait from '../public/portrait.jpeg'
 
 //TODO: Fix "blinking"
 
-export default function Header({ name, sections, portrait }: HeaderProps) {
-  const [shouldHideHeader, setShouldHideHeader] = useState(false)
+export default function Header() {
+  const [shouldHideHeader, setShouldHideHeader] = useState<boolean>(false)
+  const { loading, error, data } = useQuery(listSections)
+
+  console.log({ loading, error, data })
 
   useDocumentScrollThrottled((callbackData: any) => {
     const { previousScrollTop, currentScrollTop } = callbackData
@@ -24,13 +24,16 @@ export default function Header({ name, sections, portrait }: HeaderProps) {
     }, 30)
   })
 
-  const sectionsList = map(sections, (section: string) => (
-    <li key={section}>
-      <Link href={'/[slug]'} as={`/#${lowerCase(section)}`} shallow={true} scroll={false} replace>
-        <a>{section}</a>
-      </Link>
-    </li>
-  ))
+  const sectionsList = map(
+    ['About', 'Skills', 'Experience', 'Projects', 'Contact'],
+    (section: string) => (
+      <li key={section}>
+        <Link href={'/[slug]'} as={`/#${lowerCase(section)}`} shallow={true} scroll={false} replace>
+          <a>{section}</a>
+        </Link>
+      </li>
+    )
+  )
 
   return (
     <header className={`header ${shouldHideHeader ? 'hidden' : ''}`}>
@@ -51,7 +54,7 @@ export default function Header({ name, sections, portrait }: HeaderProps) {
                 />
               </a>
             </Link>
-            <h2 className="text-xl font-extrabold">{name}</h2>
+            <h2 className="text-xl font-extrabold">{'Donray Williams'}</h2>
           </div>
           <ul className="flex flex-row justify-end gap-x-4">{sectionsList}</ul>
         </div>

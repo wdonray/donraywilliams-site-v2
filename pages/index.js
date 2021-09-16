@@ -1,23 +1,17 @@
 import Header from '../components/Header.tsx'
 import Default from '../layout/Default.tsx'
-import portrait from '../public/portrait.jpeg'
 import dynamic from 'next/dynamic'
 import { map, lowerCase } from 'lodash'
-import { ApolloProvider } from '@apollo/client'
-import { GetClient } from '../utils/ApolloClient'
+
 export default function Home() {
-  const client = GetClient()
-
-  const sections = ['About', 'Skills', 'Experience', 'Projects', 'Contact']
-
-  const components = map(sections, (x) => ({
+  const components = map(['About', 'Skills', 'Experience', 'Projects', 'Contact'], (x) => ({
     component: dynamic(() => import(`../components/sections/${x}`)),
     id: x,
   }))
 
   return (
-    <ApolloProvider client={client}>
-      <Header portrait={portrait} name={'Donray Williams'} sections={sections} />
+    <div>
+      <Header />
       <Default>
         {components.map((x) => (
           <section key={x.id} id={`section-${lowerCase(x.id)}`}>
@@ -25,6 +19,6 @@ export default function Home() {
           </section>
         ))}
       </Default>
-    </ApolloProvider>
+    </div>
   )
 }
