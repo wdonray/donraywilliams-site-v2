@@ -1,22 +1,12 @@
 import '../styles/globals.css'
-import { ApolloProvider } from '@apollo/client'
-import withApollo from 'next-with-apollo'
-import { GetClient } from '../utils/ApolloClient'
-import App from 'next/app'
+import { client, ApolloProvider } from '../utils/ApolloClient'
 
-function MyApp({ Component, pageProps, apollo }) {
+function App({ Component, pageProps }) {
   return (
-    <ApolloProvider client={apollo}>
+    <ApolloProvider client={client}>
       <Component {...pageProps} />
     </ApolloProvider>
   )
 }
 
-export default withApollo(({ initialState }) => {
-  return GetClient(initialState)
-})(MyApp)
-
-MyApp.getInitialProps = async (appContext) => {
-  const appProps = await App.getInitialProps(appContext)
-  return { ...appProps }
-}
+export default App
