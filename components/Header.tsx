@@ -7,9 +7,8 @@ import portrait from '../public/portrait.jpeg'
 
 //TODO: Fix "blinking"
 
-function Header() {
+function Header({ sections }) {
   const [shouldHideHeader, setShouldHideHeader] = useState<boolean>(false)
-  const sections = ['About', 'Skills', 'Experience', 'Projects', 'Contact']
 
   useDocumentScrollThrottled((callbackData: any) => {
     const { previousScrollTop, currentScrollTop } = callbackData
