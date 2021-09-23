@@ -7,11 +7,15 @@ import { map, lowerCase } from 'lodash'
 
 export default function Home() {
   const { data, loading, error } = useQuery(listSections)
-  console.log({ data, loading, error })
-  const sections = ['About', 'Skills', 'Experience', 'Projects', 'Contact']
+  if (loading) {
+    return <div>loading...</div>
+  }
+
+  const sections = data.listSections.items
   const components = map(sections, (x) => ({
-    component: dynamic(() => import(`../components/sections/${x}`)),
-    id: x,
+    component: dynamic(() => import(`../components/sections/${x.name}`)),
+    id: x.id,
+    name: x.name,
   }))
 
   return (
@@ -19,7 +23,7 @@ export default function Home() {
       <Header sections={sections} />
       <Default>
         {components.map((x) => (
-          <section key={x.id} id={`section-${lowerCase(x.id)}`}>
+          <section key={x.id} id={`section-${lowerCase(x.name)}`}>
             <x.component />
           </section>
         ))}

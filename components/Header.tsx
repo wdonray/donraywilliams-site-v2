@@ -4,11 +4,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import useDocumentScrollThrottled from '../utils/ScrollThrottle'
 import portrait from '../public/portrait.jpeg'
-
+import { Section } from '../utils/types'
 //TODO: Fix "blinking"
 
-function Header({ sections }) {
+function Header({ sections }: { sections: Section[] }) {
   const [shouldHideHeader, setShouldHideHeader] = useState<boolean>(false)
+  console.log(sections)
 
   useDocumentScrollThrottled((callbackData: any) => {
     const { previousScrollTop, currentScrollTop } = callbackData
@@ -19,10 +20,16 @@ function Header({ sections }) {
     }, 30)
   })
 
-  const sectionsList = map(sections, (section: string) => (
-    <li key={section}>
-      <Link href={'/[slug]'} as={`/#${lowerCase(section)}`} shallow={true} scroll={false} replace>
-        <a>{section}</a>
+  const sectionsList = map(sections, (section: Section) => (
+    <li key={section.id}>
+      <Link
+        href={'/[slug]'}
+        as={`/#${lowerCase(section.name)}`}
+        shallow={true}
+        scroll={false}
+        replace
+      >
+        <a>{section.name}</a>
       </Link>
     </li>
   ))
