@@ -1,6 +1,6 @@
 export default function Experience() {
   return (
-    <div className="flex justify-center items-center h-96">
+    <div>
       <h1>Experience</h1>
     </div>
   )

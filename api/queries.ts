@@ -6,6 +6,7 @@ export const getSection = gql`
       id
       name
       content
+      order
       createdAt
       updatedAt
     }
@@ -21,7 +22,33 @@ export const listSections = gql`
       items {
         id
         name
-        content
+        content {
+          ... on About {
+            __typename
+            body
+            portrait
+          }
+          ... on Skills {
+            __typename
+            skills
+          }
+          ... on SocialMedia {
+            __typename
+            email
+            github
+            linkedin
+            twitter
+          }
+          ... on Experience {
+            __typename
+            jobs {
+              bullets
+              date
+              title
+            }
+          }
+        }
+        order
         createdAt
         updatedAt
       }

@@ -7,6 +7,8 @@ module.exports = {
         'flower-background': "url('/flower.png')",
       },
       fontFamily: {
+        header: ['Nixie One'],
+        subHeader: ['EBGaramond'],
         body: ['EBGaramond'],
       },
     },
@@ -51,7 +53,10 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ['even'],
+      borderWidth: ['first'],
+    },
   },
   plugins: [],
 }

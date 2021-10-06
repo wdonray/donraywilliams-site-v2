@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nixie+One&display=swap');
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
@@ -19,10 +20,26 @@ a {
   box-sizing: border-box;
 }
 
+h1 {
+  @apply font-header;
+}
+
+h2 {
+  @apply font-subHeader;
+}
+
 .header-image {
   border: solid !important;
   border-width: 4px !important;
   @apply border-teal !important;
+}
+
+section {
+  @apply h-96 even:bg-teal;
+}
+
+section div {
+  @apply flex justify-center items-center mx-auto container h-full;
 }
 
 .header {

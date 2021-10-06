@@ -9,7 +9,6 @@ import { Section } from '../utils/types'
 
 function Header({ sections }: { sections: Section[] }) {
   const [shouldHideHeader, setShouldHideHeader] = useState<boolean>(false)
-  console.log(sections)
 
   useDocumentScrollThrottled((callbackData: any) => {
     const { previousScrollTop, currentScrollTop } = callbackData
@@ -53,7 +52,7 @@ function Header({ sections }: { sections: Section[] }) {
                 />
               </a>
             </Link>
-            <h2 className="text-xl font-extrabold">{'Donray Williams'}</h2>
+            <h1 className="text-xl font-extrabold">{'Donray Williams'}</h1>
           </div>
           <ul className="flex flex-row justify-end gap-x-4">{sectionsList}</ul>
         </div>
