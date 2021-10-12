@@ -28,20 +28,6 @@ h2 {
   @apply font-subHeader;
 }
 
-.header-image {
-  border: solid !important;
-  border-width: 4px !important;
-  @apply border-teal !important;
-}
-
-section {
-  @apply h-96 even:bg-teal;
-}
-
-section div {
-  @apply flex justify-center items-center mx-auto container h-full;
-}
-
 .header {
   position: fixed;
   top: 0;
@@ -55,12 +41,28 @@ section div {
   transition: transform 0.8s ease;
 }
 
+.header-image {
+  border: solid !important;
+  border-width: 4px !important;
+  @apply border-teal !important;
+}
+
 .header.hidden {
   transform: translateY(-125%);
 }
 
 .default-container {
-  padding-top: 135px;
+  padding-top: 175px;
+  padding-bottom: 20px;
+}
+
+section {
+  @apply h-auto even:bg-teal;
+}
+
+section div {
+  @apply flex justify-center items-center py-1 md:py-3 
+  mx-3 md:mx-12 lg:mx-24 2xl:mx-48 h-full;
 }
 
 html {
