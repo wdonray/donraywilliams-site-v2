@@ -1,6 +1,6 @@
 export default function Contact() {
   return (
-    <div>
+    <div className="section-container">
       <h1>Contact</h1>
     </div>
   )

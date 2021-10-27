@@ -53,9 +53,9 @@ function Header({ sections }: { sections: Section[] }) {
                 />
               </a>
             </Link>
-            <h1 className="text-sm md:text-lg lg:text-xl font-extrabold">{'Donray Williams'}</h1>
+            <h1 className="text-sm md:text-lg lg:text-2xl font-extrabold">{'Donray Williams'}</h1>
           </div>
-          <ul className="md:text-sm lg:text-md hidden md:flex flex-row justify-end gap-x-4 ">
+          <ul className="md:text-sm lg:text-lg hidden md:flex flex-row justify-end gap-x-4 ">
             {sectionsList}
           </ul>
           <MenuIcon className="h-8 w-8 md:hidden text-black-light" />

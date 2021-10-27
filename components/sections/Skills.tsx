@@ -1,6 +1,6 @@
 export default function Skills() {
   return (
-    <div>
+    <div className="section-container">
       <h1>Skills</h1>
     </div>
   )

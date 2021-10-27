@@ -27,6 +27,12 @@ export const listSections = gql`
             __typename
             body
             portrait
+            education {
+              degree
+              name
+              year
+            }
+            interests
           }
           ... on Skills {
             __typename
