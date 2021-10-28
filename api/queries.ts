@@ -33,17 +33,16 @@ export const listSections = gql`
               year
             }
             interests
+            socials {
+              github
+              linkedin
+              resume
+              twitter
+            }
           }
           ... on Skills {
             __typename
             skills
-          }
-          ... on SocialMedia {
-            __typename
-            email
-            github
-            linkedin
-            twitter
           }
           ... on Experience {
             __typename

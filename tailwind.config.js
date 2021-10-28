@@ -56,6 +56,7 @@ module.exports = {
     extend: {
       backgroundColor: ['even'],
       borderWidth: ['first'],
+      maxHeight: ['focus'],
     },
   },
   plugins: [],

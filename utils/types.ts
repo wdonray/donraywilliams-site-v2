@@ -13,9 +13,17 @@ interface EducationType {
     year: number
 }
 
+interface SocialMedias {
+    resume: string,
+    github: string,
+    twitter: string,
+    linkedin: string
+}
+
 export interface AboutType {
     portrait: string,
     body: string
     education: EducationType
     interests: string[]
+    socials: SocialMedias
 }

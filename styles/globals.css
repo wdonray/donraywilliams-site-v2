@@ -72,3 +72,11 @@ section .section-container {
 html {
   scroll-behavior: smooth;
 }
+
+.social-media-icons {
+  @apply flex justify-around md:justify-center my-5 md:my-5;
+}
+
+.social-media-icons a {
+  @apply text-4xl md:mr-5 text-orange hover:text-orange-dark transform hover:scale-110;
+}
